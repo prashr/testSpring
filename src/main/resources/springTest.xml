@@ -2,14 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
+	<import resource="test.xml"/>
 	<bean name="util" class="com.prash.spr.util.OutputUtils">
 		<property name="helper" ref="output"/>
 	</bean>
-	<bean name="excel" class="com.prash.spr.core.ExcelGenerator"/>
-	<bean name="csv" class="com.prash.spr.core.CsvGenerator"/>
+	<!-- <bean name="excel" class="com.prash.spr.core.ExcelGenerator"/>
+	<bean name="csv" class="com.prash.spr.core.CsvGenerator"/> -->
 	<bean name="output" class="com.prash.spr.core.OutputHelper"/>
-
+	<bean name="conUtil" class="com.prash.spr.util.OutputConstrctor">
+		<constructor-arg ref="csv"/>
+	</bean>
+	<bean name="utilP" class="com.prash.spr.util.OutputUtils" p:helper-ref="csv" />
 </beans>
